@@ -1,0 +1,74 @@
+body,h1,h2,h3,h4,h5,h6 {
+    font-family:  cursive;
+  
+}
+body, html {
+    height: 100%;
+    
+    line-height: 1.8;
+    background-blend-mode: overlay;
+    }
+
+.bar-item button{
+    text-decoration: none;
+
+}
+
+.bar{
+    height: 20px;
+    width: 100%;
+    opacity:0.87;
+    text-decoration: none;
+    align-content: center;
+   
+    text-decoration-color: aliceblue;
+    }
+
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    padding: 16px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.bgimg-1 {
+    background-image: url('andy-chilton-56332-unsplash.jpg');
+    min-height: 100%;
+    width: 100%;
+    opacity: 0.7;
+}
+
+.bgimg-2 {
+    background-image: url("cayla1-150730-unsplash.jpg");
+    min-height: 400px;
+}
+
+
+.bgimg-3 {
+    background-image: url("charles-466056-unsplash.jpg");
+    min-height: 400px;
+
+    }
+
+.container-info{
+    
+    width: 100%;
+    align-content: center;
+    opacity: 0.8;
+    align-content: center;
+    padding: 2%;
+    background-color: antiquewhite;
+}
+.bar {
+
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    
+
+}
+.bar:hover {
+    text-decoration-color: black;
+}
