@@ -16,17 +16,15 @@
         constructor(name, quantity, calories, fat, cholestrol) {
             this.name = name;
             this.quantity = quantity/100;
-            this.calories = calories;
-            this.fat = fat;
-            this.cholestrol = cholestrol;
+            this.calories = calories*quantity/100;
+            this.fat = fat*quantity/100;
+            this.cholestrol = cholestrol*quantity/100;
             this.inColumn = false;
         }
         get Name(){
             return this.name;
         }
-        calcconsumed() {
-            return this.quantity*spnumber;
-        }
+        
          
     }
     
@@ -59,42 +57,40 @@
         
             for(j in Items) {
             var i = Items[j];
-            
             if(i.inColumn === false) {
                 var card = document.createElement("div");
                 card.id = "card" + j;
                 card.className = "card";
                 var cardBody = document.createElement("div");
                 cardBody.className = "card-body";
-        
                 var cardTitle = document.createElement("h5");
                 cardTitle.className = "card-title";
                 cardTitle.innerHTML = i.Name;
                 var cardText = document.createElement("p");
                 cardText.className = "card-text";
-                cardText.innerHTML = i.totfat + "g of fat";
+                cardText.innerHTML = i.fat + "g of fat along with "+ i.calories + "g of calories and "+i.cholestrol + "g of cholestrol  " ;
                 cardBody.appendChild(cardTitle);
                 cardBody.appendChild(cardText);
-                cardText.innerHTML = i.totcal + "g of calories";
-                cardBody.appendChild(cardTitle);
-                cardBody.appendChild(cardText);
-                cardText.innerHTML = i.totcho + "g of cholestrol";
-                cardBody.appendChild(cardTitle);
-                cardBody.appendChild(cardText);
-                
-        
                 card.appendChild(cardBody);
                 rightColumn.appendChild(card);
-        
+                totcal+=i.calories;totfat+= i.fat;totcho+=i.cholestrol;
+                var cardt = document.createElement("div1");
+                cardt.id = "cardt" + j;
+                cardt.className = "cardt";
+                var cardBodyt = document.createElement("div1");
+                cardBodyt.className = "card-bodyt";
+                var cardTitlet = document.createElement("h51");
+                cardTitlet.className = "card-titlet";
+                cardTitlet.innerHTML = "TOTAL";
+                var cardTextt = document.createElement("pt");
+                cardTextt.className = "card-textt";
+                cardTextt.innerHTML = totfat + "g of fat along with "+totcal + "g of calories and "+totcho + "g of cholestrol  " ;
+                cardBodyt.appendChild(cardTitlet);
+                cardBodyt.appendChild(cardTextt);
+                cardt.appendChild(cardBodyt);
+                rightColumn.appendChild(cardt);
                 i.inColumn = true;
-            }
-            spnumber=i.calories;
-            totcal += i.calcconsumed();
-            spnumber=i.fat;
-            totfat += i.calcconsumed();
-            spnumber=i.cholestrol;
-            totcho += i.calcconsumed();
-            console.log(totcal);console.log(totfat);console.log(totcho);
+            } 
             }
         
         }
@@ -102,7 +98,7 @@
     </script>
     <div class="bar" id="myNavbar">
             <a href="index.html" class="bar-item button">HOME</a>
-            <a href="bmi.html" class="bar-item button hide-small"> BMI</a>
+            <a href="bmi.html" class="bar-item button hide-small"> BMR</a>
             <a href="calculator.html" class="bar-item button hide-small"> NUTRITION CALCULATOR</a>
     </div>
 </head>
@@ -115,19 +111,19 @@
                     <h3>Add food material consumed</h3>
                     <div class="form-row"  >
                         <label for="name">Name of the dish</label>
-                        <input type="text" id="name" class="form-control form-group">
+                        <input type="text" id="name" class="form-control form-group"><br><br>
                         <label for="quatity">Quatity in g</label>
-                        <input type="number" id="quantity" class="form-control form-group">
+                        <input type="number" id="quantity" class="form-control form-group"><br><br>
                         <label for="calories">Calories Per 100g</label>
-                        <input type="number" id="calories" class="form-control form-group">
+                        <input type="number" id="calories" class="form-control form-group"><br><br>
                         <label for="fat">Fat per 100g</label>
-                        <input type="number" id="fat" class="form-control form-group">
+                        <input type="number" id="fat" class="form-control form-group"><br><br>
                         <label for="cholestrol">cholestrol per 100g</label>
-                        <input type="number" id="cholestrol" class="form-control form-group">
+                        <input type="number" id="cholestrol" class="form-control form-group"><br><br>
                     </div>
                     <button class ="btn btn-primary" type="submit" onclick="buttonPress()">Add</button>
                     <div id="rightColumn" class="col col-lg-4">
-                            <h3 id="elec-a">Your Consumption</h3>
+                            <h3 id="elec-a">Your Consumption : </h3>
                             <hr>
                           </div>
 </body>
