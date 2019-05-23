@@ -10,7 +10,7 @@ constructor(height,weight,age)
     {   this.height = height;
         this.weight = weight;
         this.age = age;
-        this.bmr=10*this.weight+6.25*this.height-5*this.age+5;
+        this.bmr = 10*this.weight+6.25*this.height-5*this.age+5;
    
         this.inColumn = false;
     }
@@ -49,7 +49,7 @@ function updateSite() {
         card.className = "card";
         var cardBody = document.createElement("div");
         cardBody.className = "card-body";
-        console.log(bmr);
+        console.log(i.bmr);
         var cardText = document.createElement("p");
         cardText.className = "card-text";
         cardText.innerHTML = " BMR = " + i.bmr ;
