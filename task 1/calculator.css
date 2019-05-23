@@ -1,21 +1,47 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+body{
+  background-image: url("charles-466056-unsplash.jpg");
+}
+li {
+  float: left;
+}
 
-  .container {
-    padding: 16px;
-  }
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+.container {
+  background-image: url("lukas-blazek-261682-unsplash.jpg");
+  min-height: 400px;
+  padding: 16px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn{
   
-  #main-heading {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
     text-align: center;
-  }
-  #elec-a {
-    padding: 8px;
-  }
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   
-  .myNavbar {
-    font-family:  cursive;
-  }
-  body {
-    background: #eeeeee;
-  }
-  .card {
-    padding-top: 8px;
-  }
+}

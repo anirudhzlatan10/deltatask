@@ -8,22 +8,21 @@
     <link rel="stylesheet" href="index.css">
     
          <div class="bar bgimg-3" id="myNavbar">
-
-            <a href="index.html" class="bar-item button">HOME</a>
-            <a href="bmi.html" class="bar-item button hide-small"> BMI</a>
-            <a href="calculator.html" class="bar-item button hide-small"> NUTRITION CALCULATOR</a>
-           <div class="container-info">
+            <ul>
+            <li><a href="index.html" class="bar-item button">HOME</a></li>
+            <li><a href="calculator.html" class="bar-item button hide-small"> NUTRITION CALCULATOR</a></li></ul>
+           <div class="container-info screen">
             <h1>ABOUT :</h1>
         <h3> Healthy diet or balanced diet is a diet (what you eat) that contains the right amounts of all the food groups. It includes fruit, vegetables, grains, dairy products, and protein. It does not include too much or too little of any kind of food.
              Eating wrong amounts of a food group, whether it be too much or too little, is called an "unhealthy diet" or an "imbalanced diet". A healthy diet is one that includes more foods that come from plants and fewer convenience foods.</h3>
             </div>
         </div>
-
+        <style src="bmi.js"></style>
 
 </head>
 <body>
-    <div class="bgimg-2">
-    <div class="container-info ">
+    
+    <div class="container-info screen">
         <h1>
             What is BMR:
         </h1>
@@ -34,17 +33,26 @@
                 
                 The Harris–Benedict equation may be used to assist weight loss — by reducing kilocalorie intake number below the estimated maintenance intake of the equation.
         </h4>
+    <div class="bgimg-2 screen">
+    <h4>Carbohydrate Requirement :</h4>
+            <h5>Sedentary or light activity	   -  BMR x 1.53</h5>
+            <h5> Active or moderately active	   -  BMR x 1.76</h5>
+            <h5> Vigorously active	           -  BMR x 2.25</h5><br>
     
-    <p>
-            Carbohydrate Requirement :</p>
-            <p>Sedentary or light activity	   -  BMR x 1.53</p>
-            <p> Active or moderately active	   -  BMR x 1.76</p>
-            <p> Vigorously active	           -  BMR x 2.25</p><br>
     </div>
-
-
-    </div>
-
+</div>
+<h3>Calculate BMR</h3>
+<div class = "bgimg-1 screen" >
+<div class="form-row ">
+    <label for="age">AGE</label>
+    <input type="number" id="age" class="form-control form-group"><br><br>
+    <label for="height">Height in cm</label>
+    <input type="number" id="height" class="form-control form-group"><br><br>
+    <label for="weight">Weight in kg</label>
+    <input type="number" id="weight" class="form-control form-group"><br><br>
+</div>
+<button class ="btn" type="submit" onclick="buttonPress()">BMR</button>
+</div>
 
 </body>
 </html>

@@ -1,24 +1,24 @@
-let height = 0;
-let weight = 0;
-let age = 0;
-let bmr=0;
-let _gender = '';
+var height = 0;
+var weight = 0;
+var age = 0;
+var bmr=0;
+
 class Item
 {
 
-constructor(_gender,height,weight,age)
+constructor(height,weight,age)
     {   this.height = height;
         this.weight = weight;
         this.age = age;
         this.bmr=10*this.weight+6.25*this.height-5*this.age+5;
-        this._gender = 'male';
+   
         this.inColumn = false;
     }
 
 }
 var Items = [];
 
-function buttonPressb(){
+function buttonPress(){
 var age = document.getElementById("age").value;
 var height = document.getElementById("height").value;
 var weight = document.getElementById("weight").value;
@@ -28,21 +28,21 @@ if(age <= 0 || height <= 0 || weight <= 0 ) {
     alert("Enter Values Greater Than Zero.");
 } 
 else {
-    Items.push(new Item(_gender, height, weight, age));
-    updateSiteb();
+    Items.push(new Item(height, weight, age));
+    updateSite();
 }
-document.getElementById("_gender").value = '';
+
 document.getElementById("height").value = '';
 document.getElementById("weight").value = '';
 document.getElementById("age").value = '';
 
 }
 
-function updateSiteb() {
+function updateSite() {
     var rightColumn = document.getElementById("rightColumn");
 
     for(j in Item) {
-    var i = Item[j];
+    var i = Items[j];
     if(i.inColumn === false) {
         var card = document.createElement("div");
         card.id = "card" + j;

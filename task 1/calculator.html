@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Task1claculator</title>
-    <link href="calculator.css" ref="styling">
+    <link rel="stylesheet" href = "calculator.css"> 
     <script>
 
         let totcal = 0;
@@ -24,11 +24,7 @@
         get Name(){
             return this.name;
         }
-        
-         
     }
-    
-
         var Items = [];
         function buttonPress(){
         var name = document.getElementById("name").value;
@@ -97,9 +93,9 @@
 
     </script>
     <div class="bar" id="myNavbar">
-            <a href="index.html" class="bar-item button">HOME</a>
-            <a href="bmi.html" class="bar-item button hide-small"> BMR</a>
-            <a href="calculator.html" class="bar-item button hide-small"> NUTRITION CALCULATOR</a>
+         <ul> <li> <a href="index.html" class="bar-item button">HOME</a></li>
+            
+                <li> <a href="calculator.html" class="bar-item button hide-small"> NUTRITION CALCULATOR</a></li></ul> 
     </div>
 </head>
 <body>
@@ -121,7 +117,7 @@
                         <label for="cholestrol">cholestrol per 100g</label>
                         <input type="number" id="cholestrol" class="form-control form-group"><br><br>
                     </div>
-                    <button class ="btn btn-primary" type="submit" onclick="buttonPress()">Add</button>
+                    <button class ="btn " type="submit" onclick="buttonPress()">Add</button>
                     <div id="rightColumn" class="col col-lg-4">
                             <h3 id="elec-a">Your Consumption : </h3>
                             <hr>
