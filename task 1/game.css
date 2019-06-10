@@ -1,0 +1,46 @@
+.btn{
+    text-decoration: none;
+    background-color: rgb(12, 12, 14); 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+.scoredisp{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    text-decoration-color: aliceblue;
+    background-color: #111;
+}
+body{
+    background-image: url("lukas-blazek-261682-unsplash.jpg");
+    margin-top: 100px;
+}
+.bar {
+
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+   
+
+}
+.bar:hover {
+    text-decoration-color: black;
+}
+li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
