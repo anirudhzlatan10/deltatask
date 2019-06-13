@@ -4,7 +4,7 @@
 
 	<?php
 
-		include 'getinfo.php';
+		require 'getinfo.php';
 	?>
 
 	</head>
