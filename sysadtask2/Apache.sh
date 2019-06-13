@@ -7,9 +7,9 @@ mysql -u $username -p $password < Cern.sql
 $x=1
 for $x in 1 2 3 4 
 do
-mkdir -p /var/www/html/cern$x.com/public_html
-cp Node1.php /var/www/html/cern$x.com/public_html/index.php
-chown -R www-data:www-data /var/www/html/cern$x.com
+mkdir -p /var/www/html/cern\$x.com/public_html
+cp Node1.php /var/www/html/cern\$x.com/public_html/index.php
+chown -R www-data:www-data /var/www/html/cern\$x.com
 done
 
 mkdir -p /var/www/html/addrequest.com/public_html
