@@ -27,7 +27,7 @@ if($reaponse){
 		
 for($x=1;$x<5;$x++){
 
-$q=" SELECT Availabe_CPUs,Availale_Memory FROM NODES WHERE Name IS Cern$x";
+$q=" SELECT Availabe_CPUs,Availale_Memory FROM NODES WHERE Name IS Cern".$x;
 
 $q_stmt = @mysqli_query($dbc,$q);
 
@@ -44,11 +44,11 @@ if(($q_stmt['Availabe_CPUs']>= $query2['CPU_required'])&&($q_stmt['Availale_Memo
 
 
 //updating history
-	$query3=" SELECT Starttime , CPU_required, Memory_required , Time_required_for_completion ,FROM CERN$x";
+	$query3=" SELECT Starttime , CPU_required, Memory_required , Time_required_for_completion ,FROM CERN".$x;
 	$cpu=$query2['CPU_required'];$st_time=$query2['Starttime'];$mem=$query2['Memory_required'];	                $comp_time=$query2['Time_required_for_completion'];
 	$query5 = "REPLACE INTO CERN$x(Starttime,CPU_required,Memory_required,Time_required_for_completion) VALUES(?,?,?,?)";
 	$stmt2 = mysqli_prepare($dbc,$query5);
-	mysqli_stmt_bind_param($stmt2,"siii",$st_time,$cpu,$mem,$comp_time;
+	mysqli_stmt_bind_param($stmt2,"siii",$st_time,$cpu,$mem,$comp_time);
 	mysqli_stmt_execute($stmt2);
 }
 
