@@ -1,5 +1,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $DIR
+read -p "Enter MySQL Username: " username
+read -s -p "Enter Password: " password
+mysql -u $username -p $password < Cern.sql
 
 $x=1
 for $x in 1 2 3 4 
