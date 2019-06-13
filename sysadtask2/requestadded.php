@@ -47,7 +47,7 @@ if (isset($_POST['submit'])){
 	mysqli_stmt_execute($stmt);	 
 	
 }
-	include 'alloter.php';
+	require 'alloter.php';
 ?>
 	</body>
 
