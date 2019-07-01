@@ -1,33 +1,41 @@
-import time,socket,sys
-print('Client Server...')
+import socket
+import select
+import sys
 
-soc = socket.socket()
-shost = socket.gethostname()
-ip = socket.gethostbyname(short)
+header_length = 10
+ip = "127.0.0.1"
+port = 1234
 
-print(shost, '({})'.format(ip))
-server_host = input('Enter server\'s IP address : ' )
-name = input('Enter Username :')
-port =1234
-print('Trying to connect to the server: []')
+my_username = input("Username :")
+client_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
+client_socket.connetct((ip, port))
+client_socket.setblocking(false)
 
-soc.connect((server_host , port))
-print('Connected......')
-soc.send(name.encode())
-server_name = soc.recv(1024)
-server_name = server_name.decode()
-print('{} has joined ... '.format(server_name))
-print('Enter [bye] to exit')
+Username = my_username.encode('utf-8')
+Username_header = f"{len(Username):<{header_length}}".encode("utf-8")
+
+client_socket.send(Username_header + Username)
 
 while True:
-    message = soc.recv(1024)
-    message = message.decode()
-    print(server_name,' > ', message)
-    message = input(str("Me > "))
-    if message == "bye" :
-        message= "Leaving chat room ......"
-        soc.send(message.encode())
-        print('\n')
-        break
-    soc.send(message.encode())
- 
+    message = input(f"ME > ")
+    if message:
+        message = message.encode("utf-8")
+        message_header = f"{len(message):<{header_length}}".encode("utf-8")
+        client_socket.send(message_header + message)
+    
+  
+    while True:
+        #recieve Thing
+        Username_header = client_socket.recv(header_length)
+        if not len(Username_header):
+            print("Connection Closed....")
+            sys.exit()
+            
+        Username_length = int(Username_length.decode("utf-8").strip())
+        Username = client_socket.recv(Username_length).decode("utf-8")
+
+        message_header = client_socket.recv(header_length)
+        message_length = int(message_header.decode("utf-8").strip())
+        message = client_socket.recv(message_length).decode("utf-8")
+
+        print(f"{Username} > {message}")
