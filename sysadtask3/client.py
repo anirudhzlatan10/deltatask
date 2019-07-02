@@ -1,20 +1,20 @@
 import time , socket , sys
 print('Setting-up Server...')
 
-soc = socket.socket()
+soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host_name = socket.gethostname()
 ip = socket.gethostbyname(host_name)
 port = 1234
 soc.bind((host_name,port))
-print(host_name,'({})'.format(ip))
+
 name = input('Enter Name: ')
 soc.listen(1)
 current_users = {}
 
 print('Waiting for incoming connection...')
 connection.addr = soc.accept()
-print('Recieved Connection from'.addr[0].'('.addr[1].')\n')
-print('Connecton Established.\nConnected From : {}, ({})'.format(addr[0],addr[0]))
+
+print('Connecton Established......')
 
 client_name = connection.recv(1024)
 client_name = client_name.decode()
