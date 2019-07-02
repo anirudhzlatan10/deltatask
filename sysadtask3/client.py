@@ -1,41 +1,41 @@
-import socket
-import select
-import sys
+import time , socket , sys
+print('Setting-up Server...')
 
-header_length = 10
-ip = "127.0.0.1"
+soc = socket.socket()
+host_name = socket.gethostname()
+ip = socket.gethostbyname(host_name)
 port = 1234
+soc.bind((host_name,port))
+print(host_name,'({})'.format(ip))
+name = input('Enter Name: ')
+soc.listen(1)
+current_users = {}
 
-my_username = input("Username :")
-client_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
-client_socket.connetct((ip, port))
-client_socket.setblocking(false)
+print('Waiting for incoming connection...')
+connection.addr = soc.accept()
+print('Recieved Connection from'.addr[0].'('.addr[1].')\n')
+print('Connecton Established.\nConnected From : {}, ({})'.format(addr[0],addr[0]))
 
-Username = my_username.encode('utf-8')
-Username_header = f"{len(Username):<{header_length}}".encode("utf-8")
-
-client_socket.send(Username_header + Username)
+client_name = connection.recv(1024)
+client_name = client_name.decode()
+current_users.extend(client_name)
+print(client_name + ' has connected ')
+print('Enter [bye] to leave the chatroom ')
+connection.send(name.encode())
 
 while True:
-    message = input(f"ME > ")
-    if message:
-        message = message.encode("utf-8")
-        message_header = f"{len(message):<{header_length}}".encode("utf-8")
-        client_socket.send(message_header + message)
-    
-  
-    while True:
-        #recieve Thing
-        Username_header = client_socket.recv(header_length)
-        if not len(Username_header):
-            print("Connection Closed....")
-            sys.exit()
-            
-        Username_length = int(Username_length.decode("utf-8").strip())
-        Username = client_socket.recv(Username_length).decode("utf-8")
+    no_of_users = len(current_users)
+    print(f"Users online : {no_of_users}")
+    message = input('Me > ')
+    if message=='bye':
+        message = 'Good bye.....'
+        current_users.remove(client_name)
+        connection.send(message.encode())
+        print("\n")
+        break
+    connection.send(message.encode())
 
-        message_header = client_socket.recv(header_length)
-        message_length = int(message_header.decode("utf-8").strip())
-        message = client_socket.recv(message_length).decode("utf-8")
+    message = connection.recv(1024)
+    message = message.decode()
+    print(client_name, ' > ', message)
 
-        print(f"{Username} > {message}")
