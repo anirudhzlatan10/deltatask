@@ -13,14 +13,13 @@ current_users = {}
 
 print('Waiting for incoming connection...')
 connection.addr = soc.accept()
-print('Recieved Connection from'.addr[0].'('.addr[1].')\n')
-print('Connecton Established.\nConnected From : {}, ({})'.format(addr[0],addr[0]))
+print('Connecton Established.....')
 
 client_name = connection.recv(1024)
 client_name = client_name.decode()
 current_users.extend(client_name)
 print(client_name + ' has connected ')
-print('Enter [bye] to leave the chatroom ')
+print('Enter bye to leave the chatroom ')
 connection.send(name.encode())
 
 while True:
