@@ -1,19 +1,19 @@
 import time , socket , sys
 print('Setting-up Server...')
 
-soc = socket.socket()
+soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host_name = socket.gethostname()
 ip = socket.gethostbyname(host_name)
 port = 1234
 soc.bind((host_name,port))
-print(host_name,'({})'.format(ip))
-name = input('Enter Name: ')
 soc.listen(1)
 current_users = {}
 
 print('Waiting for incoming connection...')
 connection.addr = soc.accept()
 print('Connecton Established.....')
+no_of_users = len(current_users)
+print(f"Users online : {no_of_users}")
 
 client_name = connection.recv(1024)
 client_name = client_name.decode()
@@ -23,8 +23,6 @@ print('Enter bye to leave the chatroom ')
 connection.send(name.encode())
 
 while True:
-    no_of_users = len(current_users)
-    print(f"Users online : {no_of_users}")
     message = input('Me > ')
     if message=='bye':
         message = 'Good bye.....'
