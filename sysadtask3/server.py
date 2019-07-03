@@ -37,6 +37,7 @@ def Broadcast(Msg, Sender="", Prefix="") :
         elif (Sender != "") and (clients[s] == Sender):
             s.send(bytes("You: "+Msg+"\n","utf8"))
 
+            
 clients={}
 addresses={}
 
