@@ -1,38 +1,54 @@
-import time , socket , sys
-print('Setting-up Server...')
+import socket
+from threading import Thread
 
-soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host_name = socket.gethostname()
-ip = socket.gethostbyname(host_name)
-port = 1234
-soc.bind((host_name,port))
-soc.listen(1)
-current_users = {}
+USERNO=0
 
-print('Waiting for incoming connection...')
-connection.addr = soc.accept()
-print('Connecton Established.....')
-no_of_users = len(current_users)
-print(f"Users online : {no_of_users}")
+def AcceptConn():
+    while True:
+        Client, ClientAddr = SERVER.accept()
+        addresses[Client] = ClientAddr
+        Thread(target=HandleClient, args=(Client,)).start()
 
-client_name = connection.recv(1024)
-client_name = client_name.decode()
-current_users.extend(client_name)
-print(client_name + ' has connected ')
-print('Enter bye to leave the chatroom ')
-connection.send(name.encode())
+def HandleClient(Client):
+    global USERNO
+    Name = Client.recv(1024).decode("utf8")
+    USERNO=USERNO+1
+    Welcome = "Welcome {}! To exit chatroom, type [quit] anytime. Number of Users online: {}".format(Name,USERNO)
+    Client.send(bytes(Welcome,"utf8"))
+    Msg = "{} has joined the chat. Number of Users online: {}".format(Name,USERNO)
+    Broadcast(Msg, Name)
+    clients[Client] = Name
 
-while True:
-    message = input('Me > ')
-    if message=='bye':
-        message = 'Good bye.....'
-        current_users.remove(client_name)
-        connection.send(message.encode())
-        print("\n")
-        break
-    connection.send(message.encode())
+    while True:
+        Msg = Client.recv(1024).decode("utf8")
+        if Msg != "[quit]":
+            Broadcast(Msg, Name, Name+": ")
+        else:
+            Client.close()
+            del clients[Client]
+            USERNO=USERNO-1
+            Broadcast("{} has left the chat. Number of Users online: {}".format(Name,USERNO),Name)
+            break
 
-    message = connection.recv(1024)
-    message = message.decode()
-    print(client_name, ' > ', message)
+def Broadcast(Msg, Sender="", Prefix="") :
+    for s in clients:
+        if (Sender != "") and (clients[s] != Sender):
+            s.send(bytes(Prefix+Msg+"\n","utf8"))
+        elif (Sender != "") and (clients[s] == Sender):
+            s.send(bytes("You: "+Msg+"\n","utf8"))
 
+clients={}
+addresses={}
+
+HOST = '127.0.0.1'
+PORT = 12345
+
+SERVER = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+SERVER.bind((HOST,PORT))
+
+if __name__=="__main__":
+    SERVER.listen()
+    NEWTHREAD = Thread(target=AcceptConn)
+    NEWTHREAD.start()
+    NEWTHREAD.join()
+    SERVER.close()
