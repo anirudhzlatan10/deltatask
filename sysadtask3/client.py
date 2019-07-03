@@ -1,41 +1,34 @@
-import time , socket , sys
-print('Setting-up Server...')
+import socket
+import sys
+from threading import Thread
 
-soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host_name = socket.gethostname()
-ip = socket.gethostbyname(host_name)
-port = 1234
-soc.bind((host_name,port))
+def Receive() :
+    while True:
+        try:
+            Msg = CLIENTSOC.recv(1024).decode("utf8")
+            print("{}".format(Msg))
+        except OSError:
+            break
 
-name = input('Enter Name: ')
-soc.listen(1)
-current_users = {}
+def Send() :
+    while True:
+        SendMsg = input("ME >")
+        CLIENTSOC.send(bytes(SendMsg,"utf8"))
+        if SendMsg == "[quit]":
+            CLIENTSOC.close()
+            sys.exit()
 
-print('Waiting for incoming connection...')
-connection.addr = soc.accept()
+HOST = '127.0.0.1'
+PORT = 12345
+ADDR = (HOST,PORT)
 
-print('Connecton Established......')
+CLIENTSOC = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+CLIENTSOC.connect(ADDR)
 
-client_name = connection.recv(1024)
-client_name = client_name.decode()
-current_users.extend(client_name)
-print(client_name + ' has connected ')
-print('Enter [bye] to leave the chatroom ')
-connection.send(name.encode())
+UN = input("Greetings! Enter your name: ")
+CLIENTSOC.send(bytes(UN,"utf8"))
 
-while True:
-    no_of_users = len(current_users)
-    print(f"Users online : {no_of_users}")
-    message = input('Me > ')
-    if message=='bye':
-        message = 'Good bye.....'
-        current_users.remove(client_name)
-        connection.send(message.encode())
-        print("\n")
-        break
-    connection.send(message.encode())
-
-    message = connection.recv(1024)
-    message = message.decode()
-    print(client_name, ' > ', message)
-
+RECTHREAD = Thread(target=Receive)
+RECTHREAD.start()
+SENDTHREAD = Thread(target=Send)
+SENDTHREAD.start()
